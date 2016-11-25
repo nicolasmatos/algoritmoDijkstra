@@ -1,0 +1,10 @@
+﻿  Principal.c
+  Grafo.c
+c:\dev\ideia\algoritmodijkstra\algoritmodijkstra\grafo.c(92): warning C4047: 'return': 'int' differs in levels of indirection from 'No *'
+c:\dev\ideia\algoritmodijkstra\algoritmodijkstra\grafo.c(87): warning C4101: 'i': unreferenced local variable
+c:\dev\ideia\algoritmodijkstra\algoritmodijkstra\grafo.c(103): warning C4098: 'escrever_pos': 'void' function returning a value
+c:\dev\ideia\algoritmodijkstra\algoritmodijkstra\grafo.c(160): warning C4033: 'remover_pos' must return a value
+  Generating Code...
+c:\dev\ideia\algoritmodijkstra\algoritmodijkstra\grafo.c(182): warning C4715: 'remover_pos': not all control paths return a value
+  algoritmoDijkstra.vcxproj -> C:\Dev\Ideia\algoritmoDijkstra\Debug\algoritmoDijkstra.exe
+  algoritmoDijkstra.vcxproj -> C:\Dev\Ideia\algoritmoDijkstra\Debug\algoritmoDijkstra.pdb (Partial PDB)
