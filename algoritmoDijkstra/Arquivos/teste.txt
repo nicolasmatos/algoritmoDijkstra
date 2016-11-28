@@ -1,0 +1,15 @@
+CV va
+CV vb
+CV vc
+CV vd
+CA a va vb 1
+CA b vb vc 3
+CA c vc vd 1
+CA d vd va 2
+CA e vb vd 1
+IG
+RA e
+IG
+RV va
+IG
+

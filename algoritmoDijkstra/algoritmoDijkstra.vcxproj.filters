@@ -18,12 +18,18 @@
     <ClInclude Include="Grafo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dijkstra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Grafo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Principal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dijkstra.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

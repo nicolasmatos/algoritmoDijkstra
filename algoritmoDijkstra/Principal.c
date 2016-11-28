@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Grafo.h"
 
 /*
@@ -10,7 +11,7 @@ RV v			-> Remove o vértice identificado por v
 --------------------------------------------------------------------------------------------------------------
 CA a v1 v2 x	-> Cria uma aresta com o identificador a incidindo nos vértices de identificadores v1 e v2. O
                 valor armazenado na aresta é um número inteiro especificado por x
-				--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 RA a			-> Remove a aresta identificada por a
 --------------------------------------------------------------------------------------------------------------
 TA a x			-> Troca o valor armazenado na aresta de identificador a pelo valor x
@@ -41,7 +42,7 @@ FM				-> Termina a execução do seu programa. Todas as estruturas dinâmicas de
 				desalocadas e seu programa deve encerrar.
 */
 
-void carregaAlunos(FILE * fp) {
+void carregaAlunos(Grafo * g, FILE * fp) {
 	int i = 0;
 	char c = fgetc(fp);
 
@@ -53,7 +54,7 @@ void carregaAlunos(FILE * fp) {
 		char valorAresta[50];
 		int va = 0;
 
-		while (c != ' ') {
+		while (c != ' ' && c != '\n') {
 			comando[i] = c;
 			i++;
 			c = fgetc(fp);
@@ -61,8 +62,8 @@ void carregaAlunos(FILE * fp) {
 		comando[i] = '\0';
 		c = fgetc(fp);
 		i = 0;
-
-		if (strcmp(comando, "CV")) {
+		
+		if (!strcmp(comando, "CV")) {
 			while (c != '\n') {
 				vertice1[i] = c;
 				i++;
@@ -72,10 +73,10 @@ void carregaAlunos(FILE * fp) {
 			c = fgetc(fp);
 			i = 0;
 
-			//inserir_vertice(vertice1);
+			inserir_vertice(g, vertice1);
 		}
 
-		else if (strcmp(comando, "RV")) {
+		else if (!strcmp(comando, "RV")) {
 			while (c != '\n') {
 				vertice1[i] = c;
 				i++;
@@ -85,10 +86,10 @@ void carregaAlunos(FILE * fp) {
 			c = fgetc(fp);
 			i = 0;
 
-			//remover_vertice(vertice1);
+			remover_vertice_rep(g, vertice1);
 		}
 
-		else if (strcmp(comando, "CA")) {
+		else if (!strcmp(comando, "CA")) {
 			while (c != ' ') {
 				aresta[i] = c;
 				i++;
@@ -127,10 +128,10 @@ void carregaAlunos(FILE * fp) {
 
 			va = atoi(valorAresta);
 
-			//inserir_aresta (aresta, vertice1, vertice2, va);
+			inserir_aresta_rep (g, aresta, vertice1, vertice2, va);
 		}
 
-		else if (strcmp(comando, "RA")) {
+		else if (!strcmp(comando, "RA")) {
 			while (c != '\n') {
 				aresta[i] = c;
 				i++;
@@ -140,10 +141,10 @@ void carregaAlunos(FILE * fp) {
 			c = fgetc(fp);
 			i = 0;
 
-			//remover_aresta(aresta);
+			remover_aresta_rep(g, aresta);
 		}
 
-		else if (strcmp(comando, "TA")) {
+		else if (!strcmp(comando, "TA")) {
 			while (c != ' ') {
 				aresta[i] = c;
 				i++;
@@ -167,11 +168,11 @@ void carregaAlunos(FILE * fp) {
 			//atualizar_valor_aresta (aresta, va);
 		}
 
-		else if (strcmp(comando, "IG")) {
-			//imprimir_grafo();
+		else if (!strcmp(comando, "IG")) {
+			imprimir_grafo(g);
 		}
 
-		else if (strcmp(comando, "CM")) {
+		else if (!strcmp(comando, "CM")) {
 			while (c != ' ') {
 				vertice1[i] = c;
 				i++;
@@ -193,16 +194,16 @@ void carregaAlunos(FILE * fp) {
 			//caminho_minimo(vertice1, vertice2);
 		}
 
-		else if (strcmp(comando, "FM")) {
+		else if (!strcmp(comando, "FM")) {
 			//limpar tudo e sair
 		}
 
-		c = fgetc(fp);
+		//c = fgetc(fp);
 	}
 	fclose(fp);
 }
 
-int chamaArquivo(char arquivo[]) {
+int chamaArquivo(Grafo * g, char arquivo[]) {
 	char caminho[100];
 	strcpy(caminho, "Arquivos\\");
 	strcat(caminho, arquivo);
@@ -217,20 +218,13 @@ int chamaArquivo(char arquivo[]) {
 	}
 	else {
 		printf("Carregando ...\n\n");
-		carregaAlunos(fp);
+		carregaAlunos(g, fp);
 	}
 }
 
 int main() {
-	Lista * l = criar();
+	Grafo * g = criar_grafo();
 
-	adicionar_vertice(l, 1);
-	adicionar_vertice(l, 2);
-	adicionar_vertice(l, 3);
-	adicionar_vertice(l, 4);
-	imprimir(l);
-
-	destruir(l);
 	int opcao = 0, menu = 0;
 	char comando[50];
 	char arquivoCarregado[50];
@@ -253,7 +247,7 @@ int main() {
 			printf("Nome do arquivo a ser carregado: ");
 			scanf("%s", arquivoCarregado);
 
-			menu = chamaArquivo(arquivoCarregado) == 1 ? 0 : menu;
+			menu = chamaArquivo(g, arquivoCarregado) == 1 ? 0 : menu;
 		}
 		else if (menu == 2) {
 			while (opcao != 1) {
@@ -311,6 +305,5 @@ int main() {
 		}
 	}
 	
-	//destruir(a);
 	system("pause");
 }

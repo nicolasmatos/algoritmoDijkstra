@@ -110,9 +110,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Grafo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Dijkstra.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Grafo.c" />
     <ClCompile Include="Principal.c" />
   </ItemGroup>

@@ -1,28 +1,23 @@
 typedef struct lista Lista;
+typedef struct grafo Grafo;
+typedef struct vertice Vertice;
+typedef struct aresta Aresta;
 
 Lista * criar();
+Grafo * criar_grafo();
 void destruir(Lista * l);
 void limpar(Lista * l);
 void imprimir(Lista * l);
 
 int tamanho(Lista * l);
 int esta_vazia(Lista * l);
-int ler_pos(Lista * l, int p);
-int primeiro(Lista * l);
-int ultimo(Lista * l);
-int buscar(Lista * l, int v);
+int buscar(Lista * l, Vertice * v);
 
-void escrever_pos(Lista * l, int p, int v);
-void inserir_pos(Lista * l, int p, int v);
-void inserir_primeiro(Lista * l, int v);
-void inserir_ultimo(Lista * l, int v);
-int remover_pos(Lista * l, int p);
-int remover_primeiro(Lista * l);
-int remover_ultimo(Lista * l);
-void remover(Lista * l, int v);
+Vertice * remover(Lista * l, Vertice * v);
 
-void remover_todos(Lista * l, int v);
-
-void adicionar_vertice(Lista * l, int v);
-void adicionar_verticeAdj(Lista * l, int v);
-void adicionar_aresta(Lista * l, int vOri, int vDest);
+void inserir_vertice(Grafo * g, char rep[50]);
+void adicionar_vertice(Lista * l, Vertice * v);
+void adicionar_aresta(Lista * l, Aresta * a);
+void inserir_aresta_rep(Grafo * g, char rep[50], char v1O[50], char v2O[50], int v);
+void remover_aresta_rep(char rep[50]);
+void remover_vertice_rep(char rep[50]);

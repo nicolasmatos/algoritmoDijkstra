@@ -1,10 +1,17 @@
-﻿  Principal.c
-c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\principal.c(65): warning C4013: 'strcmp' undefined; assuming extern returning int
-c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\principal.c(207): warning C4013: 'strcpy' undefined; assuming extern returning int
-c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\principal.c(208): warning C4013: 'strcat' undefined; assuming extern returning int
-c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\principal.c(240): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\principal.c(241): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\principal.c(260): warning C4013: 'gets' undefined; assuming extern returning int
-c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\principal.c(222): warning C4715: 'chamaArquivo': not all control paths return a value
+﻿  Grafo.c
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(222): warning C4028: formal parameter 1 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(222): warning C4029: declared formal parameter list different from definition
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(256): warning C4028: formal parameter 1 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(256): warning C4029: declared formal parameter list different from definition
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(287): warning C4033: 'remover_pos' must return a value
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(328): warning C4047: ':': 'int' differs in levels of indirection from 'char [1]'
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(328): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'char *'
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(368): warning C4028: formal parameter 1 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(368): warning C4029: declared formal parameter list different from definition
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(394): warning C4028: formal parameter 2 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(394): warning C4028: formal parameter 3 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(309): warning C4715: 'remover_pos': not all control paths return a value
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(316): warning C4715: 'remover': not all control paths return a value
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(408): warning C4716: 'caminho_minimo': must return a value
   algoritmoDijkstra.vcxproj -> C:\Dev\Visual Studio\Projects\algoritmoDijkstra\Debug\algoritmoDijkstra.exe
   algoritmoDijkstra.vcxproj -> C:\Dev\Visual Studio\Projects\algoritmoDijkstra\Debug\algoritmoDijkstra.pdb (Partial PDB)
