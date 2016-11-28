@@ -11,6 +11,8 @@ typedef struct aresta Aresta;
 
 struct aresta {
 	char rep[50];
+	Vertice * v1;
+	Vertice * v2;
 	int peso;
 };
 
@@ -238,6 +240,8 @@ void inserir_aresta(char rep[50], Vertice * v1, Vertice * v2, int v) {
 	adicionar_vertice(v1->vizinhos, v2);
 	adicionar_vertice(v2->vizinhos, v1);
 	a->peso = v;
+	a->v1 = v1;
+	a->v2 = v2;
 
 	adicionar_aresta(v1->vizinhos, a);
 	adicionar_aresta(v2->vizinhos, a);
@@ -388,22 +392,31 @@ Vertice * remover(Lista * l, Vertice * v) {
 }
 
 void imprimir_grafo(Grafo * g) {
-	int i, j;
+	int i, j, x;
 	No * aux = g->v->ini;
 	No * aux1 = NULL;
-	printf("------------------------\n");
-	for (i = 0; i < tamanho(g->v); i++) {
-		printf("Vertice: %s\n", aux->v->rep);
+	int qtdV = tamanho(g->v), qtdA = 0;
+	
+	printf("Qtd de vertices: %d\n", qtdV);
+	for (i = 0; i < qtdV; i++) {
+		printf("%s ", aux->v->rep);
+		qtdA += tamanho(aux->v->vizinhos);
+		aux = aux->prox;
+	}
+	printf("\nQtd de vertices: %d\n", qtdA / 2);
+
+	aux = g->v->ini;
+
+	for (i = 0; i < qtdV; i++) {
 		aux1 = aux->v->vizinhos->ini;
 		for (j = 0; j < tamanho(aux->v->vizinhos); j++) {
-			printf("	Vizinhos: %s \n", aux1->v->rep);
-			printf("	Arestas: %s->%d \n", aux1->a != NULL ? aux1->a->rep : "", aux1->a != NULL ? aux1->a->peso : "");
+			printf("%s %s %s %d\n", aux1->a->rep, aux1->a->v1->rep, aux1->a->v2->rep, aux1->a->peso);
 			aux1 = aux1->prox;
 		}
 		aux = aux->prox;
-		printf("------------------------\n\n");
 	}
-	
+
+	printf("\n");
 }
 
 //Dijkstra
