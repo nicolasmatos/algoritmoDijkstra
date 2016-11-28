@@ -84,6 +84,48 @@ void imprimir(Lista * l) {
 	printf("]\n");
 }
 
+void imprimir_prioridade(Lista * l) {
+	No * aux = l->ini;
+	printf("[ ");
+	while (aux != NULL) {
+		printf("%s -> %d", aux->v->rep, aux->v->cv);
+		aux = aux->prox;
+	}
+	printf("]\n");
+}
+
+void imprimir_visitados(Lista * l) {
+	No * aux = l->ini;
+	printf("[ ");
+	while (aux != NULL) {
+		printf("Vertice: %s\nPeso: %d\nPred: %s\n\n", aux->v->rep, aux->v->cv, aux->v->pred->rep);
+		aux = aux->prox;
+	}
+	printf("]\n");
+}
+
+void imprimir_caminho_minimo(Lista * l , Vertice * v) {
+	No * aux = l->ini;
+	Lista * cmI = criar();
+	Vertice * destino = NULL;
+	int custo = 0;
+
+	while (aux != NULL) {
+		if (!strcmp(aux->v->rep, v->rep)) {
+			destino = aux->v;
+		}
+		aux = aux->prox;
+	}
+
+	while (destino != NULL) {
+		adicionar_vertice_primeiro(cmI, destino);
+		custo += destino->cv;
+		destino = destino->pred;
+	}
+	printf("Custo: %d\n", custo);
+	imprimir(cmI);
+}
+
 int tamanho(Lista * l) {
 	return l->tam;
 }
@@ -100,6 +142,10 @@ int buscar(Lista * l, Vertice * v) {
 		if (aux == NULL || !strcmp(aux->v->rep, v->rep)) {
 			i = tamanho(l);
 		}
+		else {
+			aux = aux->prox;
+		}
+
 		p++;
 	}
 
@@ -143,6 +189,10 @@ void inserir_pos_vertice(Lista * l, int p, Vertice * v) {
 
 void adicionar_vertice(Lista * l, Vertice * v) {
 	inserir_pos_vertice(l, tamanho(l), v);
+}
+
+void adicionar_vertice_primeiro(Lista * l, Vertice * v) {
+	inserir_pos_vertice(l, 0, v);
 }
 
 void inserir_vertice(Grafo * g, char rep[50]) {
@@ -229,23 +279,23 @@ void remover_aresta_rep(Grafo * g, char rep[50]) {
 	int ctrl = 0;
 
 	for (i = 0; i < tamanho(g->v); i++) {
-
-		aux1 = aux->v->vizinhos->ini;
-		int x = tamanho(aux->v->vizinhos);
-		for (j = 0; j < x; j++) {
-			if (!strcmp(aux1->a->rep, rep)) {
-				a = aux1->a;
-				aux1->a = NULL;
-				j = tamanho(aux1->v->vizinhos);
-				ctrl++;
-				if (ctrl == 1) v1 = aux1->v;
-				else if (ctrl == 2) v2 = aux1->v;
+		if (aux != NULL) {
+			aux1 = aux->v->vizinhos->ini;
+			int x = tamanho(aux->v->vizinhos);
+			for (j = 0; j < x; j++) {
+				if (!strcmp(aux1->a->rep, rep)) {
+					a = aux1->a;
+					j = x;
+					ctrl++;
+					if (ctrl == 1) v1 = aux1->v;
+					else if (ctrl == 2) v2 = aux1->v;
+				}
+				aux1 = aux1->prox;
 			}
 
-			aux1 = aux1->prox;
-		}
+			aux = aux->prox;
 
-		aux = aux->prox;
+		}
 	}
 	remover(v1->vizinhos, v2);
 	remover(v2->vizinhos, v1);
@@ -258,6 +308,7 @@ void remover_vertice_rep(Grafo * g, char rep[50]) {
 	No * aux = g->v->ini;
 	No * aux1 = NULL;
 	Vertice * v = NULL;
+
 	for (i = 0; i < tamanho(g->v); i++) {
 		if (!strcmp(aux->v->rep, rep)) {
 			v = aux->v;
@@ -266,7 +317,7 @@ void remover_vertice_rep(Grafo * g, char rep[50]) {
 			int x = tamanho(aux->v->vizinhos);
 
 			for (j = 0; j < x; j++) {
-				remover_aresta_rep(g, aux1->a->rep);
+				if (aux1 != NULL) remover_aresta_rep(g, aux1->a->rep);
 				aux1 = aux->v->vizinhos->ini;
 			}
 			i = tamanho(g->v);
@@ -274,8 +325,29 @@ void remover_vertice_rep(Grafo * g, char rep[50]) {
 		aux = aux->prox;
 	}
 	remover(g->v, v);
-
 	free(v);
+}
+
+void atualizar_valor_aresta(Grafo * g, char rep[50], int v) {
+	int i, j;
+	No * aux = g->v->ini;
+	No * aux1 = NULL;
+
+	for (i = 0; i < tamanho(g->v); i++) {
+		if (aux != NULL) {
+			aux1 = aux->v->vizinhos->ini;
+			int x = tamanho(aux->v->vizinhos);
+			for (j = 0; j < x; j++) {
+				if (!strcmp(aux1->a->rep, rep)) {
+					j = x;
+					aux1->a->peso = v;
+				}
+				aux1 = aux1->prox;
+			}
+
+			aux = aux->prox;
+		}
+	}
 }
 
 Vertice * remover_pos(Lista * l, int p) {
@@ -342,7 +414,7 @@ Vertice * buscar_menor_vp(Grafo * g) {
 	Vertice * menor = g->prioridades->ini->v;
 
 	for (i = 0; i < tamanho(g->prioridades); i++) {
-		if (aux->prox != NULL) {
+		if (aux != NULL) {
 			if (aux->v->cv < menor->cv) {
 				menor = aux->v;
 			}
@@ -357,12 +429,30 @@ Vertice * buscar_vp(Grafo * g, Vertice * v) {
 	int i;
 	No * aux = g->prioridades->ini;
 	for (i = 0; i < tamanho(g->prioridades); i++) {
-		if (strcmp(aux->v->rep, v->rep)) {
+		if (!strcmp(aux->v->rep, v->rep)) {
 			return aux->v;
 		}
 		aux = aux->prox;
 	}
 	return NULL;
+}
+
+int checar_visitado(Grafo * g, Vertice * v) {
+	int i, result = 1;
+	No * aux = g->visitados->ini;
+
+	if (v != NULL) {
+		for (i = 0; i < tamanho(g->visitados); i++) {
+			if (!strcmp(aux->v->rep, v->rep)) {
+				result = 0;
+				i = tamanho(g->visitados);
+			}
+			aux = aux->prox;
+		}
+
+		return result;
+	}
+	return 0;
 }
 
 void processa_irmaos(Grafo * g, Vertice * v) {
@@ -373,19 +463,22 @@ void processa_irmaos(Grafo * g, Vertice * v) {
 		int chave = aux->v->cv;
 		int peso = aux->a->peso;
 		vp = buscar_vp(g, aux->v);
-		if (chave != INT_MAX) {
-			if (v->cv + peso < chave) {
+		int result = checar_visitado(g, vp);
+		if (result == 1) {
+			if (chave != INT_MAX) {
+				if (v->cv + peso < chave) {
+					aux->v->cv = v->cv + peso;
+					aux->v->pred = v;
+					vp->cv = v->cv + peso;
+					vp->pred = v;
+				}
+			}
+			else {
 				aux->v->cv = v->cv + peso;
 				aux->v->pred = v;
 				vp->cv = v->cv + peso;
 				vp->pred = v;
 			}
-		}
-		else {
-			aux->v->cv = v->cv + peso;
-			aux->v->pred = v;
-			vp->cv = v->cv + peso;
-			vp->pred = v;
 		}
 		aux = aux->prox;
 	}
@@ -395,14 +488,51 @@ Grafo * caminho_minimo(Grafo * g, No * origem, No * destino) {
 	Vertice * menor;
 	Vertice * vp;
 	No * aux = origem;
+	No * aux1 = g->v->ini;
 	aux->v->cv = 0;
+	int i;
+	int cond = strcmp(aux->v->rep, destino->v->rep) == -1 || strcmp(aux->v->rep, destino->v->rep) == 1 ? 1 : 0;
 
-	while (!strcmp(aux->v->rep, destino->v->rep)) {
+	while (cond) {
 		processa_irmaos(g, aux->v);
-		menor = buscar_menor_vp(g);
 		adicionar_vertice(g->visitados, aux->v);
 		vp = buscar_vp(g, aux->v);
 		remover(g->prioridades, vp);
-		aux->v = menor;
+		menor = buscar_menor_vp(g);
+
+		for (i = 0; i < tamanho(g->v); i++) {
+			if (aux1 != NULL) {
+				if (!strcmp(aux1->v->rep, menor->rep)) {
+					aux = aux1;
+					i = tamanho(g->v);
+				}
+				aux1 = aux1->prox;
+			}
+		}
+
+		aux1 = g->v->ini;
+
+		cond = strcmp(aux->v->rep, destino->v->rep) == -1 || strcmp(aux->v->rep, destino->v->rep) == 1 ? 1 : 0;
 	}
+
+	adicionar_vertice(g->visitados, destino->v);
+	imprimir_caminho_minimo(g->visitados, destino->v);
+}
+
+void caminho_minimo_rep(Grafo * g, char origem[50], char destino[50]) {
+	int i;
+	No * nOrigem = NULL, * nDestino = NULL;
+	No * aux = g->v->ini;
+
+	for (i = 0; i < tamanho(g->v); i++) {
+		if (!strcmp(aux->v->rep, origem)) {
+			nOrigem = aux;
+		}
+		else if (!strcmp(aux->v->rep, destino)) {
+			nDestino = aux;
+		}
+		aux = aux->prox;
+	}
+	//printf("\n%s\n%s\n", nOrigem->v->rep, nDestino->v->rep);
+	caminho_minimo(g, nOrigem, nDestino);
 }

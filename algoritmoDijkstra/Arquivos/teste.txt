@@ -1,15 +1,22 @@
-CV va
-CV vb
-CV vc
-CV vd
-CA a va vb 1
-CA b vb vc 3
-CA c vc vd 1
-CA d vd va 2
-CA e vb vd 1
-IG
-RA e
-IG
-RV va
-IG
-
+CV 1
+CV 2
+CV 3
+CV 4
+CV 5
+CV 6
+CV 7
+CV 8
+CV 9
+CA a 1 2 8
+CA b 1 3 12
+CA c 1 5 10
+CA d 2 3 11
+CA e 3 5 5
+CA f 3 4 6
+CA g 3 6 9
+CA h 3 7 20
+CA i 6 7 7
+CA j 6 8 6
+CA k 6 9 7
+CA l 7 8 12
+CM 1 8

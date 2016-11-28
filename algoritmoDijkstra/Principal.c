@@ -165,7 +165,7 @@ void carregaAlunos(Grafo * g, FILE * fp) {
 
 			va = atoi(valorAresta);
 
-			//atualizar_valor_aresta (aresta, va);
+			atualizar_valor_aresta (g, aresta, va);
 		}
 
 		else if (!strcmp(comando, "IG")) {
@@ -182,7 +182,7 @@ void carregaAlunos(Grafo * g, FILE * fp) {
 			c = fgetc(fp);
 			i = 0;
 
-			while (c != ' ') {
+			while (c != '\n') {
 				vertice2[i] = c;
 				i++;
 				c = fgetc(fp);
@@ -191,7 +191,7 @@ void carregaAlunos(Grafo * g, FILE * fp) {
 			c = fgetc(fp);
 			i = 0;
 
-			//caminho_minimo(vertice1, vertice2);
+			caminho_minimo_rep(g, vertice1, vertice2);
 		}
 
 		else if (!strcmp(comando, "FM")) {
@@ -296,7 +296,6 @@ int main() {
 				}
 			}
 		}
-
 		else {
 			system("cls");
 			printf("\n=============================");

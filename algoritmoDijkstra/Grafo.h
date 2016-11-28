@@ -17,7 +17,10 @@ Vertice * remover(Lista * l, Vertice * v);
 
 void inserir_vertice(Grafo * g, char rep[50]);
 void adicionar_vertice(Lista * l, Vertice * v);
+void adicionar_vertice_primeiro(Lista * l, Vertice * v);
 void adicionar_aresta(Lista * l, Aresta * a);
 void inserir_aresta_rep(Grafo * g, char rep[50], char v1O[50], char v2O[50], int v);
 void remover_aresta_rep(char rep[50]);
 void remover_vertice_rep(char rep[50]);
+void atualizar_valor_aresta(Grafo * g, char rep[50], int v);
+void caminho_minimo_rep(Grafo * g, char origem[50], char destino[50]);
