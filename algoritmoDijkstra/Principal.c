@@ -225,14 +225,15 @@ int chamaArquivo(Grafo * g, char arquivo[]) {
 int main() {
 	Grafo * g = criar_grafo();
 
-	int opcao = 0, menu = 0;
+	int opcao = 0, opcao2 = 0, menu = 0;
 	char comando[50];
 	char arquivoCarregado[50];
 
-	while (menu != 1 && menu != 2) {
+	while (menu != 3) {
 		printf("================================Menu de opcoes================================\n");
 		printf("1\. Carregar de arquivo\n"
-			"2\. Interar via prompt\n");
+			   "2\. Interar via prompt\n"
+		       "3\. Finalizar\n");
 		printf("===============================================================================\n");
 		printf("\nQual opcao do menu deseja executar?\n");
 		scanf("%d", &menu);
@@ -250,42 +251,92 @@ int main() {
 			menu = chamaArquivo(g, arquivoCarregado) == 1 ? 0 : menu;
 		}
 		else if (menu == 2) {
-			while (opcao != 1) {
-				gets(comando);
-				if (strcmp(comando, "CV")) {
-					printf("Criar vertice");
+			while (opcao != 8) {
+				printf("================================Menu de opcoes================================\n");
+				printf("1\. Criar vertice\n"
+					   "2\. Remover vertice\n"
+					   "3\. Criar aresta\n"
+					   "4\. Remover aresta\n"
+					   "5\. Trocar valor aresta\n"
+					   "6\. Imprimir grafo\n"
+					   "7\. Caminho minimo\n"
+					   "8\. Finalizar\n");
+				printf("===============================================================================\n");
+				printf("\nQual opcao do menu deseja executar?\n");
+				scanf("%d", &opcao2);
+				if (opcao2 == 1) {
+					char vertice1[50];
+					printf("Vertice: ");
+					scanf("%s", &vertice1);
+					inserir_vertice(g, vertice1);
 				}
 
-				else if (strcmp(comando, "RV")) {
-					printf("Rmover vertice");
+				else if (opcao2 == 2) {
+					char vertice1[50];
+					printf("Vertice: ");
+					scanf("%s", &vertice1);
+					remover_vertice_rep(g, vertice1);
 				}
 
-				else if (strcmp(comando, "CA")) {
-					printf("Criar aresta");
+				else if (opcao2 == 3) {
+					char aresta[50];
+					char vertice1[50];
+					char vertice2[50];
+					int va;
+					printf("Aresta: ");
+					scanf("%s", &aresta);
+
+					printf("Vertice 1: ");
+					scanf("%s", &vertice1);
+
+					printf("Vertice 2: ");
+					scanf("%s", &vertice2);
+
+					printf("Valor da aresta: ");
+					scanf("%d", &va);
+					inserir_aresta_rep(g, aresta, vertice1, vertice2, va);
 				}
 
-				else if (strcmp(comando, "RA")) {
-					printf("Remover aresta");
+				else if (opcao2 == 4) {
+					char aresta[50];
+					printf("Aresta: ");
+					remover_aresta_rep(g, aresta);
 				}
 
-				else if (strcmp(comando, "TA")) {
-					printf("Trocar valor da aresta");
+				else if (opcao2 == 5) {
+					char aresta[50];
+					int va;
+					printf("Aresta: ");
+					scanf("%s", &aresta);
+
+					printf("Valor da aresta: ");
+					scanf("%d", &va);
+					atualizar_valor_aresta(g, aresta, va);
 				}
 
-				else if (strcmp(comando, "IG")) {
-					printf("Imprimir grafo");
+				else if (opcao2 == 6) {
+					imprimir_grafo(g);
 				}
 
-				else if (strcmp(comando, "CM")) {
-					printf("Caminho minimo");
+				else if (opcao2 == 7) {
+					char vertice1[50];
+					char vertice2[50];
+
+					printf("Vertice 1: ");
+					scanf("%s", &vertice1);
+
+					printf("Vertice 2: ");
+					scanf("%s", &vertice2);
+
+					caminho_minimo_rep(g, vertice1, vertice2);
 				}
 
-				else if (strcmp(comando, "FM")) {
+				else if (opcao2 == 8) {
 					system("cls");
 					printf("\n\n============================");
 					printf("A operacao foi encerrada.");
 					printf("===========================\n\n");
-					opcao = 1;
+					//encerrar(g);
 				}
 
 				else {
@@ -296,6 +347,14 @@ int main() {
 				}
 			}
 		}
+		else if (menu == 3) {
+			system("cls");
+			printf("\n\n============================");
+			printf("A operacao foi encerrada.");
+			printf("===========================\n\n");
+			//encerrar(g);
+		}
+		
 		else {
 			system("cls");
 			printf("\n=============================");

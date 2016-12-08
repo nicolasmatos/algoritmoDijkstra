@@ -1,0 +1,36 @@
+CV a
+CV b
+CV c
+CV d
+CV e
+CV f
+CV g
+CV h
+CV i
+CV j
+CV k
+CV l
+CV m
+CV n
+CA 1 a f 1
+CA 2 a e 5
+CA 3 a l 2
+CA 4 b e 1
+CA 5 e h 8
+CA 6 b i 9
+CA 7 h i 10
+CA 8 h m 7
+CA 9 i f 6
+CA 10 l j 8
+CA 11 b c 11
+CA 12 f c 3
+CA 13 f m 4
+CA 14 f g 1
+CA 15 c g 5
+CA 16 c j 6
+CA 17 c d 3
+CA 18 d g 4
+CA 19 j k 13
+CA 20 d n 5
+CA 21 n k 6
+CA 22 m k 9

@@ -100,7 +100,7 @@ void imprimir_visitados(Lista * l) {
 	No * aux = l->ini;
 	printf("[ ");
 	while (aux != NULL) {
-		printf("Vertice: %s\nPeso: %d\nPred: %s\n\n", aux->v->rep, aux->v->cv, aux->v->pred->rep);
+		printf("Vertice: %s\nCv: %d\nPred: %s\n\n", aux->v->rep, aux->v->cv, aux->v->pred->rep);
 		aux = aux->prox;
 	}
 	printf("]\n");
@@ -110,7 +110,7 @@ void imprimir_caminho_minimo(Lista * l , Vertice * v) {
 	No * aux = l->ini;
 	Lista * cmI = criar();
 	Vertice * destino = NULL;
-	int custo = 0;
+	int custo = v->cv;
 
 	while (aux != NULL) {
 		if (!strcmp(aux->v->rep, v->rep)) {
@@ -121,7 +121,6 @@ void imprimir_caminho_minimo(Lista * l , Vertice * v) {
 
 	while (destino != NULL) {
 		adicionar_vertice_primeiro(cmI, destino);
-		custo += destino->cv;
 		destino = destino->pred;
 	}
 	printf("Custo: %d\n", custo);
@@ -403,7 +402,7 @@ void imprimir_grafo(Grafo * g) {
 		qtdA += tamanho(aux->v->vizinhos);
 		aux = aux->prox;
 	}
-	printf("\nQtd de vertices: %d\n", qtdA / 2);
+	printf("\nQtd de arestas: %d\n", qtdA / 2);
 
 	aux = g->v->ini;
 
@@ -506,6 +505,27 @@ Grafo * caminho_minimo(Grafo * g, No * origem, No * destino) {
 	int i;
 	int cond = strcmp(aux->v->rep, destino->v->rep) == -1 || strcmp(aux->v->rep, destino->v->rep) == 1 ? 1 : 0;
 
+	/*
+	limpar(g->prioridades);
+
+	for (i = 0; i < tamanho(g->v); i++) {
+		aux1->v->cv = INT_MAX;
+		Vertice * vp = (Vertice *)malloc(sizeof(Vertice));
+
+		strcpy(vp->rep, aux1->v->rep);
+		vp->cv = INT_MAX;
+		vp->pred = NULL;
+		vp->vizinhos = criar();
+
+		adicionar_vertice(g->prioridades, vp);
+		aux1 = aux1->prox;
+	}
+
+	limpar(g->visitados);
+
+	aux1 = g->v->ini;
+	*/
+
 	while (cond) {
 		processa_irmaos(g, aux->v);
 		adicionar_vertice(g->visitados, aux->v);
@@ -530,6 +550,7 @@ Grafo * caminho_minimo(Grafo * g, No * origem, No * destino) {
 
 	adicionar_vertice(g->visitados, destino->v);
 	imprimir_caminho_minimo(g->visitados, destino->v);
+
 }
 
 void caminho_minimo_rep(Grafo * g, char origem[50], char destino[50]) {

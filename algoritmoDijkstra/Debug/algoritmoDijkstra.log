@@ -1,16 +1,16 @@
 ﻿  Grafo.c
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(276): warning C4028: formal parameter 1 different from declaration
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(276): warning C4029: declared formal parameter list different from definition
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(310): warning C4028: formal parameter 1 different from declaration
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(310): warning C4029: declared formal parameter list different from definition
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(363): warning C4033: 'remover_pos' must return a value
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(395): warning C4101: 'x': unreferenced local variable
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(471): warning C4028: formal parameter 1 different from declaration
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(471): warning C4029: declared formal parameter list different from definition
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(500): warning C4028: formal parameter 2 different from declaration
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(500): warning C4028: formal parameter 3 different from declaration
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(385): warning C4715: 'remover_pos': not all control paths return a value
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(392): warning C4715: 'remover': not all control paths return a value
-c:\dev\visual studio\algoritmodijkstra\algoritmodijkstra\grafo.c(533): warning C4716: 'caminho_minimo': must return a value
-  algoritmoDijkstra.vcxproj -> C:\Dev\Visual Studio\algoritmoDijkstra\Debug\algoritmoDijkstra.exe
-  algoritmoDijkstra.vcxproj -> C:\Dev\Visual Studio\algoritmoDijkstra\Debug\algoritmoDijkstra.pdb (Partial PDB)
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(275): warning C4028: formal parameter 1 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(275): warning C4029: declared formal parameter list different from definition
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(309): warning C4028: formal parameter 1 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(309): warning C4029: declared formal parameter list different from definition
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(362): warning C4033: 'remover_pos' must return a value
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(394): warning C4101: 'x': unreferenced local variable
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(470): warning C4028: formal parameter 1 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(470): warning C4029: declared formal parameter list different from definition
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(499): warning C4028: formal parameter 2 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(499): warning C4028: formal parameter 3 different from declaration
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(384): warning C4715: 'remover_pos': not all control paths return a value
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(391): warning C4715: 'remover': not all control paths return a value
+c:\dev\visual studio\projects\algoritmodijkstra\algoritmodijkstra\grafo.c(533): warning C4716: 'caminho_minimo': must return a value
+  algoritmoDijkstra.vcxproj -> C:\Dev\Visual Studio\Projects\algoritmoDijkstra\Debug\algoritmoDijkstra.exe
+  algoritmoDijkstra.vcxproj -> C:\Dev\Visual Studio\Projects\algoritmoDijkstra\Debug\algoritmoDijkstra.pdb (Partial PDB)
